@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:2.0.0"
+    }
+}
+
+group 'fr.inria.sniffer.metrics'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'args4j:args4j:2.33'
+
+    // Logging
+    compile 'log4j:log4j:1.2.17'
+    compile 'org.slf4j:slf4j-log4j12:1.7.25'
+    compile "org.neo4j:neo4j-cypher:3.1.0"
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.1.0'
+}
+
+apply plugin: 'application'
+mainClassName = "fr.inria.sniffer.metrics.calculator.Main"
+
+apply plugin: "com.github.johnrengelman.shadow"
+shadowJar {
+    mergeServiceFiles()
+}

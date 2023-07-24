@@ -1,0 +1,4 @@
+// GitHubMiner is a maven project, we will build it by hand.
+include ':SmellDetector', ":CSVSmellTracker", ':GitHubMiner'
+include ':SmellTracker'
+
